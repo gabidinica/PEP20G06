@@ -88,6 +88,160 @@ print(string1.center(20, '#'))  # stringul va ramane in centrul caracterelor
 print(number1.__add__(number2))
 print((3).__add__(4))
 
-print('multiplication: ',number1.__mul__(number2))
-print('division:',number1.__truediv__(number2))
-print('power of:',number1.__pow__(number2), number1**number2)
+print('multiplication: ', number1.__mul__(number2))
+print('division:', number1.__truediv__(number2))
+print('power of:', number1.__pow__(number2), number1 ** number2)
+print('\n\n\n')
+
+# Input function
+# print('Your name is:',input('Enter text:'))
+# my_name=input('Your last name:')
+# print('Your last name is: ', my_name)
+
+# number1=input('first number:')
+# number2=input('second number:')
+# print('sum is:', number1+number2)
+
+# Casting
+# print('Type of number1: ',type(number1))
+# number1= int(number1)
+# print('Type of number1: ',type(number1))
+# number2 =int(number2)
+# print('sum is:', number1+number2)
+
+# number1 = 2
+# number2 = 3
+# print('Type of number1: ', type(number1))
+# number1 = str(number1)
+# print('Type of number1: ', type(number1))
+# number2 = str(number2)
+# print('sum is:', number1 + number2)
+# print('\n\n\n')
+
+# catena1=input('Catena1 in cm:')
+# catena2=input('Catena2 in cm:')
+# catena1=int(catena1)
+# catena2=int(catena2)
+# print('Area is:', (catena1*catena2)/2)
+
+# Booleans
+true1 = True
+print(id(true1))
+true2 = True
+print(id(true2))
+
+# Binary operations
+# AND Operation
+result = True and True
+# print('Response type: ', type(result), result)
+# OR Operation
+# result = False or False
+# print('Response type:', type(result), result)
+
+# XOR Operation
+# print('Bool operations:', dir(True))
+# print('True xor False:', True.__xor__(False))
+
+# Unary operations: NOT Operation applicable to a boolean object
+# result = not True
+# print('Not True is:', result)
+# print('Not result is:', not result)
+
+# Order of operations
+print(not False and True)
+print((not False) and True)
+print(not (False and True))
+
+# and
+print((not False) and (not False))
+print(not (not (False and False)))
+print('Correct result:', not False and not False)
+
+# Homework
+print((True and True) or (False and False))
+print()
+
+# Cast
+print('String bool:', str(True))
+print('Integer bool True:', int(True))
+print('Integer bool False:', int(False))
+print('String "false" to bool:', bool(
+    'false'))  # orice string ce nu este gol va fi transformat intr-un boolean de tip true, iar stringul gol va fi false
+print('String "" to bool:', bool(''))
+print('Int "100" to bool:', int(100))
+print('Int "0" to bool:', int(0))
+
+# Length of object
+# print('len of "text"', len('text'))
+# print('len of ""', len(''))
+# print()
+
+# Add bool objects
+print('True + True + True =', True + True + True)
+print('True - True - True =', True + True + True)
+
+# None object
+none = None
+print('id:', id(none), id(None))  # None is saved only once in the memory
+print('Actions for None:', dir(None))
+print('\n\n')
+
+# Aplicatii
+
+string1 = 'Text to scramble'
+print('initial string:', string1)
+# Rearange odd letters:
+# string1= string1[0::2]+string1[1::2]
+# print('rearranged string:', string1)
+
+
+# string1=string1[::-1]
+# print('rearranged string:', string1)
+
+# string1=string1[0::3]+string1[1::3]+string1[2::3]
+# print('rearranged string:', string1)
+
+string1 = string1[-1::-2] + string1[-2::-2]
+print('rearranged string:', string1)
+
+string1 = '^'
+print(string1.center(8, '_'))
+print('\n\n')
+
+string1 = '--'
+print(string1.center(6, '_'))
+string1 = '| |'
+print(string1.center(7, '_'))
+string1 = '--'
+print(string1.center(6, '_'))
+print()
+
+# if statement:
+bool(True) == True
+
+# comparation
+print('Result of comp 1 with 1:', 1 == 1)
+print('Result of comp 1 < 1:', 1 < 1)
+print('Result of comp 2 > 1:', 2 > 1)
+print('Result of comp 1 >= 1:', 1 >= 1)
+print('Result of comp 2 != 1:', 2 != 1)
+
+#my_number = int(input('Give number:'))
+#if my_number < 3:
+#    print(f'Number {my_number} is smaller than 3')
+#elif my_number>5:
+#    print(f'Number {my_number} is grater than 3')
+#else:
+#    print(f'Number {my_number} is good')
+#print('\n')
+
+#for my_var in 'My text':
+ #   print(my_var)
+
+
+my_new_text=''
+for my_var in 'text to scramble':
+    my_new_text=my_var+my_new_text
+    print(my_new_text)
+
+print(my_new_text[::-1])
