@@ -152,3 +152,48 @@ print(id(empty_list))
 var1 = 4
 print(empty_list)
 print(id(empty_list))
+
+print()
+my_list_outside = []
+my_list_outside.append(1)
+my_list_inside = []
+my_list_outside.append(my_list_inside)
+my_list_inside.append(2)
+print(my_list_outside)
+my_list_inside.append(3)
+print(my_list_outside)
+
+# tuple
+print()
+empty_tuple = tuple()
+one_object_tuple = (1,)
+two_object_tuple = (1, 'a')
+no_brackets_tuple = 1, 'a', True
+print(type(no_brackets_tuple))
+print(no_brackets_tuple)
+new_two_object_tuple = (1, 'a')
+new_two_object_tuple += None,
+print(new_two_object_tuple)
+print(id(two_object_tuple), id(new_two_object_tuple))
+
+# Bit operations
+result = 1 and 0 # classical
+print(result)
+result = 1 & 0 # bit
+print(result)
+
+result = 2 and 3 # classical
+print(result)
+result = 2 & 3 # bit
+print(result)
+
+result = 3 and -1 # classical
+print(result)
+result = 3 & -1 # bit
+print(result)
+
+print(-1 ^ 3)
+print((-1).__xor__(3))
+
+print(3 | 4)
+print(~3)
