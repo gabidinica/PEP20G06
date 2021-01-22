@@ -1,7 +1,6 @@
-# from communictor.utils import is_prime, generate_primes, crypt_decrypt
+# from communicator.utils import is_prime, generate_primes, crypt_decrypt
 from communictor.utils import *
-
-VAR1 = 1
+from communictor.comm import *
 
 print('name of module is:', __name__)
 print('name of package is:', __package__)

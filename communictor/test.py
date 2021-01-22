@@ -1,25 +1,39 @@
-from communictor.comm import Client, Server
+from communictor import Client, Server
+from communictor.utils import crypt_decrypt
 
+# create instances
 client = Client(17, 2)
 server = Server(23, 4)
 
-prime = client._prime()
+# create prime and send it to server
+prime = client.generate_prime()
 server.get_prime(prime)
+print(f'Prime on client: {client.prime}; Prime on server: {server.prime}')
 
-client.generate_local_secret()
-server.generate_local_secret()
+# create base and send it to server
+base = client.generate_base()
+server.get_base(base)
+print(f'Base on client: {client.base}; Base on server: {server.base}')
 
-server.get_secret(client.local)
-client.get_secret(server.local)
+# generate numbers to send from client and server
+client_number = client.generate_local_secret()
+server_number = server.generate_local_secret()
 
-print('Client secret: ', client.secret)
-print('Server secret: ', server.secret)
+# get secret numbers from server and client
+client.get_secret(server_number)
+server.get_secret(client_number)
 
-print('Client local: ', client.local)
-print('Server local: ', server.local)
+print(f'Client number is: {client_number}; Server number is: {server_number}')
+print(f'Shared secret is: {client.secret} <->  {server.secret}')
 
-print('Client dist: ', client.secret1)
-print('Server dist: ', server.secret1)
+initial_string = 'Text to send to server'
+enc = crypt_decrypt(initial_string, client.secret)
+print(enc)
+dec = crypt_decrypt(enc, server.secret)
+print(dec)
 
+encrypted_text=client.encrypt(initial_string)
+print(encrypted_text)
 
-
+decrypted_text=server.decrypt(encrypted_text)
+print(decrypted_text)
