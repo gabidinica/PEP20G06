@@ -63,18 +63,16 @@ print(factorial_of_squares(3))
 
 def process_text(text: str):
     first_text = ""
-    second_text = ""
+    # second_text = ""
     for i in text:
         if i == " ":
             split_text = text.split(" ", 1)[0]
             first_text = split_text.upper()
+            second_text = text.split(" ", 1)[1]
 
-            for i in text.strip(split_text):
-                if i != i.lower() and i != " ":
-                    i = "_"
-                    second_text += i
-                else:
-                    second_text += i
+            for i in second_text:
+                if (i != i.lower()) or (i == " ") or (i == i.isnumeric()):
+                    second_text = second_text.replace(i, '_')
 
     return (first_text, second_text)
 
