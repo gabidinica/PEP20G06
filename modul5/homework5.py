@@ -35,7 +35,7 @@
 # When a side is modified by some value all other sides need to be modified by the fraction of the change to maintain
 # the same triangle angles. For example if A increase by +1 then B = ((A+1)/A)*B and C = ((A+1)/A)*C
 
-from math import cos, acos
+from math import cos, acos, degrees
 
 
 class Triangle:
@@ -48,19 +48,19 @@ class Triangle:
         self.BC = BC
         self.CA = CA
 
-    def modify_angle(self, angle: str, degrees):
+    def modify_angle(self, angle: str, degrees_t):
         self.angle = self.AB
-        self.degrees = degrees
+        self.degrees_t = degrees_t
 
         if (self.angle < 0) or (self.angle > 180):
             raise ValueError("Angle cannot be modified")
 
-        self.angle += self.degrees
+        self.angle += self.degrees_t
         self.C = (self.A ** 2 + self.B ** 2 - 2 * self.A * self.B * cos(self.angle)) ** (1 / 2)
 
         if (self.angle + self.BC + self.CA) <= 180:
-            self.BC = acos((self.B ** 2 + self.C ** 2 - self.A ** 2) / (2 * self.B * self.C))
-            self.CA = acos((self.C ** 2 + self.A ** 2 - self.B ** 2) / (2 * self.C * self.A))
+            self.BC = degrees(acos((self.B ** 2 + self.C ** 2 - self.A ** 2) / (2 * self.B * self.C)))
+            self.CA = degrees(acos((self.C ** 2 + self.A ** 2 - self.B ** 2) / (2 * self.C * self.A)))
         print("Self angle=AB= ", self.angle, "Recalculated BC angle: ", self.BC, "Recalculated CA angle: ", self.CA,
               sep='\n')
 

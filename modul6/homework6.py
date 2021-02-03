@@ -37,49 +37,61 @@ from datetime import datetime
 
 
 class CarFactoryIterator:
-    """ The class for iterating the cars  """
+    """The class for iterating cars """
 
-    def __init__(self, cars_number, serial_number):
-        self.day = datetime.now()
-        self.cars_number = cars_number
-        self.serial_number = serial_number
-
-    def calculate_serial_and_lot_number(self):
-        self.serial_number = 0
-        self.lot_number = 0
-        self.serial_number = self.cars_number + 1
-        if self.serial_number >= 1:
-            self.lot_nr = self.serial_number // 20
-        print("In day: ", self.day, "we\'ve build: ", self.serial_number, "which in lot means: ", self.lot_nr)
-
-    def right_side_driving(self):
-        return self.serial_number % 2 != 0
-
-    def left_side_driving(self):
-        return self.serial_number % 2 == 0
+    def __init__(self, lot):
+        self.lot = lot
 
     def __iter__(self):
         return self
 
     def __next__(self):
-        for i in range(self.lot_nr + 1):
-            yield i
+        if len(self.lot) == 0:
+            raise StopIteration
+        return self.lot.pop(0)
 
 
-class CarFactoryObject:
-    """The class for the object """
+class CarFactory:
+    """ The class for iterating the cars  """
 
-    def __init__(self, nr):
-        self.nr = nr
+    def __init__(self, cars_number: int, serial_number: int):
+        self.serial_l = []
+        self.lot_l = []
+        self.day = datetime.now()
+        self.serial_l.append(serial_number)
+        self.lot_number = serial_number // 20
+        for i in range(1, cars_number + 1):
+            self.serial_l.append(serial_number + i)
+        for j in range(1, cars_number + 2, 20):
+            self.lot_number += 1
+            self.lot_l.append(self.lot_number)
+
+    def right_side_driving(self) -> list:
+        list_right_side = []
+        for i in self.serial_l:
+            if i % 2 != 0:
+                list_right_side.append(i)
+        return list_right_side
+
+    def left_side_driving(self):
+        list_left_side = []
+        for i in self.serial_l:
+            if i % 2 != 0:
+                list_left_side.append(i)
+        return list_left_side
 
     def __iter__(self):
-        return CarFactoryIterator(self.nr)
+        return CarFactoryIterator(self.lot_l)
 
 
-carFactoryIterator = CarFactoryIterator(42, 30)
-print(carFactoryIterator.calculate_serial_and_lot_number())
-print(carFactoryIterator.right_side_driving())
-print(carFactoryIterator.left_side_driving())
-# int_iterator = CarFactoryIterator(20,30)
-# for i in int_iterator:
-#     print('i', i)
+cars = CarFactory(111, 91)
+print("Serial number list: ", cars.serial_l)
+print("Lot car list: ", cars.lot_l)
+print("driving on the right: ", cars.right_side_driving())
+print("driving on the left: ", cars.left_side_driving())
+
+
+f = open("homework6t.txt", "x")
+for i in cars:
+    f.write(str(i))
+    f.write("\n")

@@ -2,6 +2,11 @@
 from communictor.utils import *
 from communictor.comm import *
 
+
+from communictor.xcom import MySecret
+from communictor.server import Server
+from communictor.client import Client
+
 print('name of module is:', __name__)
 print('name of package is:', __package__)
 
